@@ -1,0 +1,22 @@
+.messageContainer {
+    border: solid rgb(202, 202, 202) 1px;
+    margin: 3vh 0;
+    padding: 1vh 1vh;
+    width: 50%;
+    overflow-wrap: break-word;
+}
+
+.userMessage {
+    font-weight: bold;
+    font-size: 2.5vh;
+}
+
+.textMessage {
+    font-size: 2.4vh;
+    padding: 0.5vh 0;
+}
+
+.dateMessage {
+    font-size: 2.1vh;
+    text-align: end;
+}

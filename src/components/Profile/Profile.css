@@ -1,0 +1,21 @@
+.avatarContainer {
+    position: relative;
+    width: 600px;
+    border: solid 1px black;
+}
+
+.avatar {
+    max-width: 100%;
+}
+
+.imageFilter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 200px;
+    background-color: black;
+    opacity: 0.5;
+    border-radius: 50%;
+    z-index: 99;
+}

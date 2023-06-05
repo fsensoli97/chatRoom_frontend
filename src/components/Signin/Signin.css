@@ -1,0 +1,50 @@
+.signinTitle {
+    text-align: center;
+    margin-top: 10vh;
+}
+
+.signinSubtitle {
+    text-align: center;
+    padding: 1vh 0vh 1vh 0vh;
+}
+
+.signinForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 3vh;
+}
+
+.signinItem {
+    max-width: 25%;
+    height: 4vh;
+    text-align: center;
+}
+
+.signinButton {
+    background-color: rgb(243, 243, 243);
+    border: solid 1px rgb(141, 141, 141);
+    border-radius: 2px;
+    cursor: pointer;
+    color: rgb(82, 82, 82);
+}
+
+.loginContainer {
+    margin-top: 5vmin;
+    text-align: center;
+}
+
+.validationContainer {
+    margin: 3ch 0 0 0;
+}
+
+.validationItem {
+    text-align: center;
+}
+
+.signinMessage {
+    margin: 3vh 0vh;
+    text-align: center;
+    background-color: rgb(255, 94, 94);
+    color: white;
+}

@@ -1,24 +1,58 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Send from "./components/Send/Send";
+import { useState } from "react";
+import Login from "./components/Login/Login";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Signin from "./components/Signin/Signin";
+import Logout from "./components/Logout/Logout";
+import Chat from "./components/Chat/Chat";
+import './index.css'
+import './App.css'
+import Menu from "./components/Menu/Menu";
+import Profile from "./components/Profile/Profile";
+
+function setTokenSession(token) {
+  sessionStorage.setItem("token", JSON.stringify(token));
+}
+
+function getToken() {
+  const tokenString = sessionStorage.getItem("token");
+  const token = JSON.parse(tokenString);
+  return token;
+}
 
 function App() {
+  const [token, setToken] = useState(getToken());
+  
+  if (!token?.success) {
+    return (
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Login setToken = {setToken} setTokenSession = {setTokenSession}></Login>}></Route>
+          <Route path="/signin" element={<Signin setToken = {setToken} setTokenSession = {setTokenSession}></Signin>}></Route>
+        </Routes>
+      </BrowserRouter>
+    )
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={
+            <>
+              <h3 className="welcomeUser">Welcome {token.username + "!"}</h3>
+              <Chat user={token.username}></Chat>
+              <Send user={token.username}></Send>
+              <Logout setToken={setToken} id={token.id}></Logout>
+              <Menu></Menu>
+            </>
+          }>           
+          </Route>
+          <Route path="/profile" element={<Profile></Profile>}></Route>
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 

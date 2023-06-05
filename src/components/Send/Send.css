@@ -1,0 +1,31 @@
+.sendContainer {
+    display: flex;
+    margin: 3vh 5vw;
+    align-items: center;
+    justify-content: left;
+}
+
+.inputMessage {
+    resize: none;
+    overflow: auto;
+    width: 50%;
+}
+
+.inputMessage:focus {
+    outline: none;
+}
+
+.sendButton {
+    background-color: rgb(224, 235, 236);
+    color: rgb(77, 77, 77);
+    border: solid 1px rgb(140, 156, 160);
+    border-radius: 45%;
+    margin: 0 2vw;
+    padding: 1.5vh 3vw;
+    text-align: center;
+    cursor: pointer;
+}
+
+.sendButton:disabled {
+    opacity: 0.6;
+}

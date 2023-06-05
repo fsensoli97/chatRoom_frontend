@@ -1,0 +1,12 @@
+.logoutContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.logout {
+    background-color: transparent;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+    color: rgb(64, 64, 138);
+}

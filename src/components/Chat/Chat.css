@@ -1,0 +1,6 @@
+.chatContainer {
+    height: 50vh;
+    overflow: auto;
+    border: solid 1px rgb(133, 133, 133);
+    margin: 0 5vw;
+}
