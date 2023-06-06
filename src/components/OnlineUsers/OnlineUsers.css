@@ -1,0 +1,7 @@
+.usersContainer {
+    height: 50vh;
+    overflow: auto;
+    border: solid 1px rgb(133, 133, 133);
+    max-width: 100%;
+    margin-right: 5vw;
+}

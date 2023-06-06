@@ -28,7 +28,12 @@ export default function Login({ setToken, setTokenSession }) {
                 setTokenSession(data);
             }
             else {
-                setMessage(data.message);
+                if (data.message === " does not exist.") {
+                    setMessage("Enter a username.");
+                }
+                else {
+                    setMessage(data.message);
+                }
                 setTimeout( () => setMessage(<></>), 1500);
             }
          });
@@ -44,7 +49,7 @@ export default function Login({ setToken, setTokenSession }) {
                 <input className="loginItem loginButton" type="submit" value="Login" />
             </form>
             <div className="signinContainer"><Link className="signin" to="/signin">Sign-in</Link></div>
-            <p className="signinMessage" style={{backgroundColor: "red"}}>{message}</p>
+            <p className="signinMessage">{message}</p>
         </>
     )
 }

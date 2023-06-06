@@ -4,6 +4,7 @@
     padding: 1vh 1vh;
     width: 50%;
     overflow-wrap: break-word;
+    color: rgb(226, 226, 226);
 }
 
 .userMessage {
@@ -19,4 +20,31 @@
 .dateMessage {
     font-size: 2.1vh;
     text-align: end;
+}
+
+.messageButtons {
+    float: right;
+}
+
+.editButton {
+    margin: 0 0.5vw;
+    cursor: pointer;
+}
+
+.deleteButton {
+    margin: 0 0.5vw;
+    cursor: pointer;
+}
+
+.editInput {
+    width: 70%;
+}
+
+.editInput:focus {
+    outline: none;
+}
+
+.editConfirmButton {
+    margin: 0 1vw;
+    cursor: pointer;
 }

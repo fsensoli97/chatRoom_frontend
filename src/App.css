@@ -1,3 +1,16 @@
 .welcomeUser {
   text-align: center;
+  color: rgb(226, 226, 226);
+}
+
+.chatUsersContainer {
+  display: flex;
+}
+
+.chatBlock {
+  width: 70%;
+}
+
+.usersBlock {
+  width: 30%;
 }

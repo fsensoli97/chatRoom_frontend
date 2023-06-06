@@ -83,7 +83,7 @@ export default function Signin() {
           <input className="signinItem" type="password" placeholder="password" name="password" onChange={passwordValidation}/>
           <input className="signinItem signinButton" type="submit" value="Sign-in"
           disabled={!validationColor.passwordChars && validationColor.passwordLength && validationColor.usernameLength}
-          style={{opacity: validationColor.passwordChars && validationColor.passwordLength && validationColor.usernameLength ? 1 : 0.5}} />
+          style={{opacity: validationColor.passwordChars && validationColor.passwordLength && validationColor.usernameLength ? 1 : 0.7}} />
         </form>
         <div className="validationContainer">
           <div className="validationItem" style={{color: validationColor.usernameLength ? "green" : "red"}}>Username between 4 and 20 characters long.</div>

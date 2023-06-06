@@ -10,6 +10,7 @@ import './index.css'
 import './App.css'
 import Menu from "./components/Menu/Menu";
 import Profile from "./components/Profile/Profile";
+import OnlineUsers from "./components/OnlineUsers/OnlineUsers";
 
 function setTokenSession(token) {
   sessionStorage.setItem("token", JSON.stringify(token));
@@ -42,7 +43,14 @@ function App() {
           <Route path="/" element={
             <>
               <h3 className="welcomeUser">Welcome {token.username + "!"}</h3>
-              <Chat user={token.username}></Chat>
+              <div className="chatUsersContainer">
+                <div className="chatBlock">
+                  <Chat user={token.username}></Chat>
+                </div>
+                <div className="usersBlock">
+                  <OnlineUsers></OnlineUsers>
+                </div>
+              </div>
               <Send user={token.username}></Send>
               <Logout setToken={setToken} id={token.id}></Logout>
               <Menu></Menu>

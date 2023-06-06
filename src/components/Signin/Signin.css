@@ -1,11 +1,13 @@
 .signinTitle {
     text-align: center;
     margin-top: 10vh;
+    color: rgb(226, 226, 226);
 }
 
 .signinSubtitle {
     text-align: center;
     padding: 1vh 0vh 1vh 0vh;
+    color: rgb(226, 226, 226);
 }
 
 .signinForm {
