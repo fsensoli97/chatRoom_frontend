@@ -4,6 +4,7 @@ import './Signin.css'
 
 export default function Signin() {
   const [username, setUsername] = useState();
+  const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [validationColor, setValidationColor] = useState({usernameLength: false, passwordLength: false, passwordChars: false});
   const [message, setMessage] = useState();
@@ -19,6 +20,7 @@ export default function Signin() {
       body: JSON.stringify(
         {
           username: username,
+          email: email,
           password: password
         }
       )
@@ -36,7 +38,7 @@ export default function Signin() {
         setMessageColor("red");
         return;
       }
-      setMessage(`${username} already exists`);
+      setMessage(`${username}/${email} already exists`);
       setTimeout( () => setMessage(<></>), 1500);
       setMessageColor("red");
     })
@@ -80,6 +82,7 @@ export default function Signin() {
         <h3 className="signinSubtitle">Sign-in</h3>
         <form className="signinForm" onSubmit={submitHandle}>
           <input className="signinItem" type="text" placeholder="username" name="username" onChange={usernameValidation} />
+          <input className="signinItem" type="text" placeholder="email" name="email" onChange={(e) => {setEmail(e.target.value)}} />
           <input className="signinItem" type="password" placeholder="password" name="password" onChange={passwordValidation}/>
           <input className="signinItem signinButton" type="submit" value="Sign-in"
           disabled={!validationColor.passwordChars && validationColor.passwordLength && validationColor.usernameLength}

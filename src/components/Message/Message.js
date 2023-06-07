@@ -52,7 +52,7 @@ export default function Message({id, user, text, date, sameUser}) {
 
   //const tmp = new Date();
   //const timestamp = `${('00' + tmp.getHours()).slice(-2)}:${('00' + tmp.getMinutes()).slice(-2)}`;
-  const timestamp = date.split('T')[1].split('.')[0];
+  const timestamp = date.split('T')[1].split('.')[0].substring(0,5);
 
   return (
     <div ref={editInput} className='messageContainer' style={{float: sameUser ? "right" : "left"}}>

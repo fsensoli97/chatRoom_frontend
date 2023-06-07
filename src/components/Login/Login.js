@@ -44,7 +44,7 @@ export default function Login({ setToken, setTokenSession }) {
             <h2 className="loginTitle">Welcome to Chat Room</h2>
             <h3 className="loginSubtitle">Login</h3>
             <form className="loginForm" onSubmit={loginUser}>
-                <input className="loginItem" type="text" placeholder="username" onChange={(e) => setUsername(e.target.value)} />
+                <input className="loginItem" type="text" placeholder="username or email" onChange={(e) => setUsername(e.target.value)} />
                 <input className="loginItem" type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)} />
                 <input className="loginItem loginButton" type="submit" value="Login" />
             </form>
