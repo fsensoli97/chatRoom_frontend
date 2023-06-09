@@ -1,0 +1,28 @@
+.menuContainer {
+    position: absolute;
+    top: 1vw;
+    left: 1vh;
+    color: rgb(226, 226, 226);
+    background-color: rgb(66, 66, 66);
+}
+
+.hamburgerMenu {
+    size: 50;
+    cursor: pointer;
+}
+
+.menuLink {
+    color: rgb(226, 226, 226);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.menuItem {
+    padding: 2vh 3vw;
+    border: solid 1px rgb(107, 107, 107);
+    background-color: rgb(71, 71, 71);
+}
+
+.menuItem:hover {
+    background-color: rgb(77, 77, 77);;
+}

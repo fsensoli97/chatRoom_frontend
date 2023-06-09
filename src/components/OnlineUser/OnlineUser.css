@@ -7,3 +7,17 @@
 .onlineIcon {
     margin: 0 1vw;
 }
+
+.profilePicContainer {
+    display: flex;
+    align-items: center;
+    column-gap: 1vw;
+    width: 4vw;   
+}
+
+.profilePic {
+    border-radius: 50%;
+    max-width: 100%;
+    object-fit: fill;
+    border: solid 2px rgb(226, 226, 226);
+}

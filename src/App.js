@@ -57,7 +57,7 @@ function App() {
             </>
           }>           
           </Route>
-          <Route path="/profile" element={<Profile></Profile>}></Route>
+          <Route path="/profile" element={<Profile id={token.id}></Profile>}></Route>
         </Routes>
       </BrowserRouter>
     </>

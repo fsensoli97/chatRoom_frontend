@@ -5,100 +5,83 @@ import { useState } from "react";
 import './Profile.css';
 import { useEffect } from "react";
 import { useRef } from "react";
+import Cropper from "react-easy-crop";
+import { Slider } from "@mui/material";
 
-export default function Profile() {
-  const [avatar, setAvatar] = useState(null);
-  const [cropAvatar, setCropAvatar] = useState(null);
-  const [filter, setFilter] = useState({x: null, y: null, draggable: false});
-  const canvasRef = useRef(null);
+export default function Profile({ id }) {
+  const [img, setImg] = useState(null);
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState(1.5);
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
+  const [croppedImage, setCroppedImage] = useState(null);
+  const [blob, setBlob] = useState(null);
 
   function handleFileChoose(e) {
     if (e.target.files && e.target.files[0]) {
-      setAvatar(URL.createObjectURL(e.target.files[0]));
+      setImg(URL.createObjectURL(e.target.files[0]));
     }
   }
 
-  function onMouseUp(e) {
-    document.removeEventListener('mousemove', onMouseMove);
-    document.removeEventListener('mouseup', onMouseUp);
-    e.stopPropagation();
-    e.preventDefault();
-  }
-
-  function onMouseDown(e) {
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseUp);
-    e.stopPropagation();
-    e.preventDefault();
-  }
+  function getCroppedImg() {
+    const image = new Image();
+    image.src = img;
+    const canvas = document.createElement("canvas");
+    canvas.width = image.width;
+    canvas.height = image.height;
+    const ctx = canvas.getContext("2d");
+    //console.log(canvas.width, canvas.height, croppedAreaPixels.x, croppedAreaPixels.y, croppedAreaPixels.width, croppedAreaPixels.height)
+    
+    ctx.drawImage(image, 0, 0);
+    const data = ctx.getImageData(croppedAreaPixels.x, croppedAreaPixels.y, croppedAreaPixels.width, croppedAreaPixels.height);
   
-  function onMouseMove(e) {
-    const pos = document.getElementById('filterImage').getBoundingClientRect();
-    setFilter({x: e.pageX - pos.width/2, y: e.pageY - pos.height/2, draggable: true});
-    e.stopPropagation();
-    e.preventDefault();
+    const canvas2 = document.createElement("canvas");
+    const ctx2 = canvas2.getContext("2d");
+    canvas2.width = croppedAreaPixels.width;
+    canvas2.height = croppedAreaPixels.height;
+    ctx2.putImageData(data, 0, 0);
+  
+    canvas2.toBlob((file) => {
+      setBlob(file);
+      setCroppedImage(URL.createObjectURL(file), "image/jpeg");
+    });
   }
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const context = canvas.getContext("2d");
+  function saveImage() {
+    if (!blob) return;
 
-    const image = new Image();
-    image.src = avatar;
-    image.onload = function(){
-    context.drawImage(image, 0, 0, image.width, image.height, 0, 0, canvas.width, canvas.height);
-    }
-  }, [avatar]);
+    const formData = new FormData();
+    formData.append("profilePic", blob);
 
-
-  function cropImage() {
-    const canvas = canvasRef.current;
-    const context = canvas.getContext("2d");
-
-    const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-
-    let canvas1 = document.createElement("canvas");
-
-    let ctx1 = canvas1.getContext("2d");
-    /*
-    ctx1.rect(0, 0, 200, 200);
-    ctx1.fillStyle = 'white';
-    ctx1.fill();
-    */
-    ctx1.putImageData(imageData, 0, 0, filter.x, filter.y, 200, 200);
-
-    setCropAvatar(canvas1.toDataURL("image/png"));
-    /*
-    const pos = document.getElementById('filterImage').getBoundingClientRect();
-    const canvas = cropCanvasRef.current;
-    const context = canvas.getContext("2d");
-
-    const image = new Image();
-    image.src = avatar;
-    image.onload = function(){
-      context.drawImage(image, filter.x * image.width / canvas.width, filter.y * image.height / canvas.height, 200, 200, 0, 0, canvas.width, canvas.height);
-    }
-    */
-
+    fetch(`http://localhost:2000/profilepic?id=${id}`, {
+        method: "PUT",
+        body: formData,
+      })
+      .then((response) => response.text())
+      .then((responseText) => {
+      console.log(responseText);
+      });
+      console.log(blob)
   }
 
   return (
     <>
-      <div id="avatarContainer">
-        {avatar? <div style={{left: filter.x, top: filter.y}} id="filterImage" className="imageFilter" onMouseDown={onMouseDown}></div> : null}
-        <Link to="/"><FontAwesomeIcon icon={faArrowLeft}></FontAwesomeIcon></Link>
-        <form>
-          <input type="file" onChange={handleFileChoose}></input>
-        </form>
-        <canvas style={{width: "100%"}} ref={canvasRef} className="avatarContainer">
-          <img className="avatar" src={avatar} alt=""></img>
-        </canvas>
-
-        <img src={cropAvatar} alt=""></img>
-        
-      </div>
-
-      <button onClick={cropImage}>Crop Image</button>
+      <Link to="/"><FontAwesomeIcon className="backArrow" size="2x" icon={faArrowLeft}></FontAwesomeIcon></Link>
+      <form>
+        <div className="chooseButtonContainer">
+          <label className="chooseFileButton">
+            <input type="file" onChange={handleFileChoose}></input>
+            Choose file
+          </label> 
+        </div>   
+      </form>
+      {img ? <>
+      <div className="cropperContainer">
+        <Cropper classes={{ containerClassName: "cropper", mediaClassName: "mediaContainer", cropAreaClassName: "areaContainer" }} image={img} crop={crop} onCropChange={setCrop} cropShape="round" aspect={1/1}
+        zoom={zoom} zoomSpeed={4} maxZoom={3} zoomWithScroll={true} showGrid={true} onZoomChange={setZoom} onCropComplete={(croppedArea, croppedAreaPixels) => {setCroppedAreaPixels(croppedAreaPixels)}}></Cropper></div>
+        <div className="sliderContainer"><Slider sx={{color: "white"}} value={zoom} min={1} max={3} step={0.01} onChange={(e, zoom) => setZoom(zoom)}></Slider></div>
+      <div className="cropButtonContainer"><button className="cropButton" onClick={getCroppedImg}>Crop</button></div>
+      <div className="screenshotContainer"><img className="screenshot" src={croppedImage} alt="crop"></img></div>
+      <div><button onClick={saveImage}>Done</button></div></>  : <></>}
     </>
   );
 }

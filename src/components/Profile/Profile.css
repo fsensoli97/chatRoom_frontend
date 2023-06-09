@@ -1,21 +1,71 @@
-.avatarContainer {
-    position: relative;
-    width: 600px;
-    border: solid 1px black;
+.backArrow {
+    margin: 1vh 1vw;
+    color: rgb(226, 226, 226);
 }
 
-.avatar {
-    max-width: 100%;
+input[type="file"] {
+    display: none;
 }
 
-.imageFilter {
+.chooseButtonContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.chooseFileButton {
+    background-color: rgb(243, 243, 243);
+    border: solid 1px rgb(141, 141, 141);
+    border-radius: 2px;
+    padding: 2vh 2vw;
+    cursor: pointer;
+}
+
+.chooseFileButton:hover, .cropButton:hover {
+    background-color: rgb(231, 231, 231);
+}
+
+.cropper {
+    height: 50vh;
+    width: 70vw;
+    margin: 0 15vw;
+    border: solid 1px rgb(226, 226, 226);
+    margin-top: 20vh;
+    border: solid 1px white;
+}
+
+.sliderContainer {
+    width: 70vw;
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 200px;
-    height: 200px;
-    background-color: black;
-    opacity: 0.5;
+    margin-top: 55vh;
+    margin-left: 15vw;
+}
+
+.cropButtonContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 60vh;
+}
+
+.cropButton {
+    background-color: rgb(243, 243, 243);
+    border: solid 1px rgb(141, 141, 141);
+    border-radius: 2px;
+    padding: 1.5vh 3vw;
+    cursor: pointer;
+}
+
+.screenshotContainer {
+    margin-top: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 40vw;
+    padding: 0 30vw;
+}
+
+.screenshot {
     border-radius: 50%;
-    z-index: 99;
+    max-width: 100%;
+    object-fit: fill;
+    border: solid 2px rgb(226, 226, 226);
 }

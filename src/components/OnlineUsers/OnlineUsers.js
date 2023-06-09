@@ -11,7 +11,7 @@ export default function OnlineUsers() {
         .then(response => {return response.json();})
         .then(data => {
             const content = data.map((row) => {
-                return <OnlineUser key={row.username} username={row.username} isOnline={row.isOnline}></OnlineUser>
+                return <OnlineUser key={row.id} id={row.id} username={row.username} isOnline={row.isOnline}></OnlineUser>
             });
             setUsers(content);
         });
