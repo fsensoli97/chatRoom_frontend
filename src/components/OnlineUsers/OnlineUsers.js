@@ -11,7 +11,8 @@ export default function OnlineUsers() {
         .then(response => {return response.json();})
         .then(data => {
             const content = data.map((row) => {
-                return <OnlineUser key={row.id} id={row.id} username={row.username} isOnline={row.isOnline}></OnlineUser>
+                if (!row.isverified) return <div key={row.id}></div>;
+                return <OnlineUser key={row.id} id={row.id} username={row.username} isOnline={row.isonline}></OnlineUser>;
             });
             setUsers(content);
         });

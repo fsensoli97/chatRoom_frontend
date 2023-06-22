@@ -16,7 +16,7 @@ export default function Signin() {
     fetch("http://localhost:2000/signin", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      mode: "cors",
+      //mode: "cors",
       body: JSON.stringify(
         {
           username: username,

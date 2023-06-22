@@ -30,7 +30,7 @@ export default function Chat( {user} ) {
             
             const content = await data.reverse().map((row) => {
                 return (
-                    <Message className="messageContainer" id={row.id} key={row.id} user={row.user} text={row.text} date={row.date} sameUser={row.user===user}></Message>
+                    <Message className="messageContainer" id={row.id} key={row.id} user={row.username} text={row.text} date={row.date} sameUser={row.username===user}></Message>
                 );
             });
             
