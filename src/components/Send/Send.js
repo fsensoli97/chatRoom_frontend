@@ -1,12 +1,13 @@
 import { useState } from "react";
 import './Send.css'
+import { serverUrl } from "../../global";
 
 export default function Send({user}) {
   let [message, setMessage] = useState("");
 
   function handleClick(event) {
     try {
-      fetch("http://localhost:2000/messages", {
+      fetch(`${serverUrl}messages`, {
         method: "POST",
         mode: "cors",
         headers: {

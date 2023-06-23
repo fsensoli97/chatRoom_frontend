@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useRef } from "react";
 import Cropper from "react-easy-crop";
 import { Slider } from "@mui/material";
+import { serverUrl } from "../../global";
 
 export default function Profile({ id }) {
   const [img, setImg] = useState(null);
@@ -52,7 +53,7 @@ export default function Profile({ id }) {
     const formData = new FormData();
     formData.append("profilePic", blob);
 
-    fetch(`http://localhost:2000/profilepic?id=${id}`, {
+    fetch(`${serverUrl}profilepic?id=${id}`, {
         method: "PUT",
         body: formData,
       })

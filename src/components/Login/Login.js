@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import './Login.css'
+import { serverUrl } from "../../global";
 
 export default function Login({ setToken, setTokenSession }) {
     const [username, setUsername] = useState();
@@ -10,7 +11,8 @@ export default function Login({ setToken, setTokenSession }) {
     function loginUser(e) {
         e.preventDefault();
 
-        fetch("http://localhost:2000/login", {
+        console.log(serverUrl)
+        fetch(`${serverUrl}login`, {
             method: "POST",
             mode: "cors",
             headers: {"Content-Type": "application/json"},

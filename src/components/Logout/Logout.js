@@ -1,11 +1,12 @@
 import './Logout.css'
+import { serverUrl } from '../../global';
 
 export default function Logout({setToken, id}) {
   function handleLogout() {
     sessionStorage.removeItem("token");
     setToken(null);
 
-    fetch(`http://localhost:2000/logout?id=${id}`, {
+    fetch(`${serverUrl}logout?id=${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       mode: "cors",

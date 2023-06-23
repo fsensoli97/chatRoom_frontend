@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRef } from "react";
 import Message from "../Message/Message";
 import './Chat.css'
+import { serverUrl } from "../../global";
 
 export default function Chat( {user} ) {
     const [chat, setChat] = useState();
@@ -18,7 +19,7 @@ export default function Chat( {user} ) {
     const fetchChat = async () => {
         try {
             //console.log(`http://localhost:2000/messages?num=${readMessages.current}`)
-            const response = await fetch(`http://localhost:2000/messages?num=${readMessages.current}`);
+            const response = await fetch(`${serverUrl}messages?num=${readMessages.current}`);
             const data = await response.json();
 
             sameLastMessage.current = (lastMessageId === data[0].id);

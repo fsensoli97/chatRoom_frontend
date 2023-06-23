@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import { useEffect } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil, faX, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { serverUrl } from '../../global';
 
 export default function Message({id, user, text, date, sameUser}) {
   const [isEditing, setIsEditing] = useState(false);
@@ -16,7 +17,7 @@ export default function Message({id, user, text, date, sameUser}) {
 
   function updateMsg() {
     setIsEditing(false);
-    fetch(`http://localhost:2000/editMessage?id=${id}`, {
+    fetch(`${serverUrl}editMessage?id=${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       mode: "cors",
@@ -29,7 +30,7 @@ export default function Message({id, user, text, date, sameUser}) {
   };
 
   function deleteMessage() {
-    fetch(`http://localhost:2000/deleteMessage?id=${id}`, {
+    fetch(`${serverUrl}deleteMessage?id=${id}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       mode: "cors",

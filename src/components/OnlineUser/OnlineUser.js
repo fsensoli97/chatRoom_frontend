@@ -2,13 +2,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
 import './OnlineUser.css'
 import { useState, useEffect } from "react";
+import { serverUrl } from "../../global";
 
 export default function OnlineUser({id, username, isOnline}) {
     const [profilePic, setProfilePic] = useState();
 
     useEffect(() => {
         console.log(id)
-        fetch(`http://localhost:2000/profilePic?id=${id}`)
+        fetch(`${serverUrl}profilePic?id=${id}`)
         .then(async (response) => {
             if (!response) return;
             const file = await response.blob();

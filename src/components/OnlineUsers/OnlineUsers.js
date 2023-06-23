@@ -2,12 +2,13 @@ import { useEffect } from "react";
 import { useState } from "react";
 import OnlineUser from "../OnlineUser/OnlineUser";
 import './OnlineUsers.css'
+import { serverUrl } from "../../global";
 
 export default function OnlineUsers() {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:2000/users")
+        fetch(`${serverUrl}users`)
         .then(response => {return response.json();})
         .then(data => {
             const content = data.map((row) => {

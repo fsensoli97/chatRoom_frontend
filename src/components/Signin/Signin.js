@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import './Signin.css'
+import { serverUrl } from "../../global";
 
 export default function Signin() {
   const [username, setUsername] = useState();
@@ -13,7 +14,7 @@ export default function Signin() {
   function submitHandle(e) {
     e.preventDefault();
 
-    fetch("http://localhost:2000/signin", {
+    fetch(`${serverUrl}signin`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       //mode: "cors",
