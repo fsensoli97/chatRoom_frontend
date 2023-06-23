@@ -13,7 +13,7 @@ export default function Login({ setToken, setTokenSession }) {
 
         fetch(`${serverUrl}login`, {
             method: "POST",
-            //mode: "cors",
+            mode: "cors",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(
                 {
