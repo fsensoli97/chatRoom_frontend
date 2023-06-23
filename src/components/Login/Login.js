@@ -11,10 +11,9 @@ export default function Login({ setToken, setTokenSession }) {
     function loginUser(e) {
         e.preventDefault();
 
-        console.log(serverUrl)
         fetch(`${serverUrl}login`, {
             method: "POST",
-            mode: "cors",
+            //mode: "cors",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(
                 {
